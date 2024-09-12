@@ -133,8 +133,6 @@ const Connect4Board = () => {
         />
       </div>
 
-
-
       <div className={`board ${isResetting ? 'resetting' : ''}`}>
         {board.map((row, rowIndex) => (
           <div key={rowIndex} className="row">
