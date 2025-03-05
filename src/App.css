@@ -1,11 +1,14 @@
 .App {
   text-align: center;
   padding: 20px;
+  min-height: 100vh;
+  background-color: #121212;
 }
 
 main {
   margin: 20px auto;
-  max-width: 800px;
+  max-width: 1280px;
+  padding: 0 20px;
 }
 
 .projects-grid {
@@ -194,9 +197,17 @@ body {
 }
 
 .App-header {
-  background-color: #1f1f1f;
   padding: 20px;
-  text-align: center;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(18, 18, 18, 0.9);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  margin-bottom: 30px;
 }
 
 .App-header h1 {
@@ -205,37 +216,135 @@ body {
 }
 
 .social-links {
-  margin-top: 10px;
+  display: flex;
+  gap: 15px;
 }
 
 .social-links a {
-  color: #ffffff;
-  margin: 0 10px;
-  transition: color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
-
+.social-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
 
 .tabber {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 20px 0 40px;
+  gap: 15px;
 }
 
 .tabber button {
-  background: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
   border: none;
-  color: #ffffff;
-  font-size: 1rem;
-  margin: 0 10px;
+  padding: 12px 24px;
+  border-radius: 30px;
   cursor: pointer;
-  transition: color 0.3s;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .tabber button.active {
-  color: #0077b5; /* LinkedIn blue */
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.tabber button:hover {
-  color: #0077b5;
+.tabber button:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.floating-name {
+  position: relative;
+  will-change: transform;
+  margin: 0;
+  padding: 10px;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Card styles for Projects and Experience sections */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card-title {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-content {
+  color: #555;
+  line-height: 1.6;
+}
+
+.github-stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.github-stats > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@media (max-width: 768px) {
+  .App-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .floating-name {
+    font-size: 2rem;
+  }
+  
+  .tabber {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* Smooth scrolling for timeline effect */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure content has enough height for scrolling effects */
+.App main {
+  min-height: 100vh;
+}
+
+/* Additional styles for active timeline items */
+.timeline-entry.active .timeline-content {
+  border-left: 4px solid #6e8efb;
+  border-right: 4px solid #a777e3;
 }
