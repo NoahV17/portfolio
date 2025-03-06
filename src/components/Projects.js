@@ -143,71 +143,54 @@ const Projects = () => {
   return (
     <section className="projects-section">
       <h3>My Projects</h3>
-      <div className="projects-container">
+      <div className="projects-grid">
         {projects.map((project) => (
           <div key={project.id} className="card project-card">
-            <h3 className="card-title">{project.title}</h3>
+            {project.image && (
+              <div className="project-image-container">
+                <img src={project.image} alt={project.title} className="project-image" />
+              </div>
+            )}
             <div className="card-content">
-              <p>{project.githubData?.description || project.description}</p>
+              <h3 className="card-title">{project.title}</h3>
+              <p className="project-description">{project.githubData?.description || project.description}</p>
               
               <div className="skills-container">
-                {project.skills.map((skill, index) => (
+                {project.skills.slice(0, 3).map((skill, index) => (
                   <span key={index} className={`skill-tag ${getSkillClass(skill)}`}>
                     {getSkillIcon(skill)} {skill}
                   </span>
                 ))}
-                {project.githubData?.language && 
-                  !project.skills.includes(project.githubData.language) && (
-                    <span className="skill-tag main-language">
-                      {getSkillIcon(project.githubData.language)} {project.githubData.language}
-                    </span>
-                  )
-                }
+                {project.skills.length > 3 && (
+                  <span className="skill-tag">+{project.skills.length - 3}</span>
+                )}
               </div>
               
               {project.loading ? (
                 <div className="loading-indicator">
-                  <i className="fas fa-spinner fa-spin"></i> Loading GitHub data...
+                  <i className="fas fa-spinner fa-spin"></i>
                 </div>
               ) : project.githubData ? (
-                <>
-                  <div className="github-stats">
-                    <div className="stars">
-                      <i className="fas fa-star"></i> {project.githubData.stars}
-                    </div>
-                    <div className="forks">
-                      <i className="fas fa-code-branch"></i> {project.githubData.forks}
-                    </div>
-                    <div className="updated">
-                      <i className="fas fa-calendar"></i> Updated: {project.githubData.lastUpdated}
-                    </div>
+                <div className="github-stats">
+                  <div>
+                    <i className="fas fa-star"></i> {project.githubData.stars}
                   </div>
-                  
-                  {project.githubData.recentCommits.length > 0 && (
-                    <div className="recent-commits">
-                      <h4>Recent Updates</h4>
-                      <ul>
-                        {project.githubData.recentCommits.slice(0, 2).map((commit, index) => (
-                          <li key={index}>
-                            <span className="commit-date">{commit.date}</span>
-                            <span className="commit-message">{commit.message}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </>
+                  <div>
+                    <i className="fas fa-code-branch"></i> {project.githubData.forks}
+                  </div>
+                </div>
               ) : null}
               
-              <div className="project-links">
+              <div className="project-links" onClick={e => e.stopPropagation()}>
                 {project.repoName && (
                   <a 
                     href={`https://github.com/NoahV17/${project.repoName}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="github-link"
+                    title="View Code"
                   >
-                    <i className="fab fa-github"></i> View Code
+                    <i className="fab fa-github"></i>
                   </a>
                 )}
                 {project.liveLink && (
@@ -216,8 +199,9 @@ const Projects = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="live-link"
+                    title="Live Demo"
                   >
-                    <i className="fas fa-external-link-alt"></i> Live Demo
+                    <i className="fas fa-external-link-alt"></i>
                   </a>
                 )}
               </div>
