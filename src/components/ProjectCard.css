@@ -1,35 +1,73 @@
 .project-card {
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 16px;
   overflow: hidden;
-  background-color: white;
-  transition: transform 0.2s;
-  margin: 0.75rem;
-  width: 100%; /* Full width for better responsiveness */
-  max-height: 350px; /* Even shorter cards */
-  display: flex;
-  flex-direction: column;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
 }
 
 .project-card:hover {
-  transform: translateY(-3px); /* Less dramatic hover effect */
+  transform: translate(5px, -5px);
+  box-shadow: -5px 5px 0px rgba(110, 142, 251, 1),
+             -10px 10px 0px rgba(167, 119, 227, 1);
 }
 
 .project-image-container {
   position: relative;
-  width: 100%;
-  height: 140px; /* Reduced height for image */
   overflow: hidden;
 }
 
 .project-image {
   width: 100%;
-  height: 100%;
+  height: 250px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-card:hover .project-overlay {
+  opacity: .5;
+}
+
+.project-card:hover .project-image {
+  transform: scale(.95);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #333;
+  text-align: left;
+}
+
+.card-content {
+  color: #555;
+  line-height: 1.5;
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .project-content {
-  padding: 0.6rem; /* Smaller padding */
+  padding: 0.8rem; /* Slightly increased padding */
   text-align: left; /* Ensure left alignment */
   flex-grow: 1;
   display: flex;
@@ -37,62 +75,112 @@
 }
 
 .project-title {
-  margin: 0 0 0.4rem 0; /* Reduced margin */
-  font-size: 1.1rem; /* Smaller font */
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
   font-weight: 600;
+  text-align: left;
 }
 
 .project-description {
   color: #666;
-  margin-bottom: 0.4rem; /* Reduced */
-  font-size: 0.8rem; /* Smaller font */
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
   /* Limit text to 2 lines with ellipsis */
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.3;
+  line-height: 1.4;
+  text-align: left;
 }
 
 .project-technologies {
   margin-top: auto; /* Push to the bottom of flex container */
-  margin-bottom: 0.4rem; /* Reduced */
+  margin-bottom: 0.5rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
+  flex-wrap: wrap-reverse; /* Reverse wrap makes tags stack upwards */
+  gap: 0.35rem;
+  justify-content: flex-start; /* Align tags to the left */
+  flex-direction: row-reverse; /* Start from bottom and go upwards */
 }
 
 .tech-tag {
   background-color: #f0f0f0;
-  padding: 0.1rem 0.25rem; /* Smaller padding */
+  padding: 0.15rem 0.35rem;
   border-radius: 4px;
-  font-size: 0.65rem; /* Smaller font */
+  font-size: 0.7rem;
   white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  font-weight: 500;
+}
+
+.tech-tag.frontend {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.tech-tag.backend {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.tech-tag.language {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.tech-tag.tool {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
 }
 
 .project-links {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem; /* Smaller gap */
-  margin-top: 0.4rem;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
 }
 
 .project-links a {
   text-decoration: none;
   color: #007bff;
-  font-size: 1rem; /* Icon-sized font */
-  width: 26px;
-  height: 26px;
+  font-size: 1.1rem;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background-color: #f8f9fa;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.project-links a.github-link {
+  background-color: #f3f3f7;
+  color: #333;
+}
+
+.project-links a.demo-link {
+  background-color: #e9f0ff;
+  color: #1565c0;
 }
 
 .project-links a:hover {
-  background-color: #e9ecef;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.project-links a.github-link:hover {
+  background-color: #24292e;
+  color: white;
+}
+
+.project-links a.demo-link:hover {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
 }
 
 /* Hide text beside icons */

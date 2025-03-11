@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaGithub, FaTimes } from 'react-icons/fa';
+import './ProjectModal.css';
+import { FaGithub, FaExternalLinkAlt, FaTimes, FaStar, FaCodeBranch } from 'react-icons/fa';
 
 const ProjectModal = ({ 
   title,
@@ -8,14 +9,19 @@ const ProjectModal = ({
   repoUrl,
   demoUrl,
   technologies,
-  additionalImages,
+  githubData,
   onClose 
 }) => {
+  // Prevent clicks inside modal from closing it
+  const handleModalClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <div className="modal-content" onClick={handleModalClick}>
         <button className="modal-close" onClick={onClose}>
-          {/* <FaTimes /> */}✕
+          {/* <FaTimes /> */}
         </button>
         
         <div className="modal-banner" style={{ backgroundImage: `url(${imageUrl})` }}>
@@ -25,37 +31,55 @@ const ProjectModal = ({
         <div className="modal-body">
           <div className="modal-description">
             <p>{description}</p>
+            
             <div className="modal-technologies">
-              {
-                Array.isArray(technologies) ? (
-                  technologies.map((tech, index) => (
-                    <span key={index} className="tech-tag">{tech}</span>
-                  ))
-                ) : (
-                  <span className="tech-tag">{typeof technologies === 'object' ? JSON.stringify(technologies) : technologies}</span>
-                )
-              }
+              {Array.isArray(technologies) && technologies.map((tech, index) => (
+                <span key={index} className="tech-tag">{tech}</span>
+              ))}
             </div>
           </div>
 
+          {githubData && (
+            <div className="modal-github-stats">
+              <div className="stat-item">
+                {/* <FaStar /> */}
+                <span>{githubData.stars} stars</span>
+              </div>
+              <div className="stat-item">
+                {/* <FaCodeBranch /> */}
+                <span>{githubData.forks} forks</span>
+              </div>
+              <div className="stat-item">
+                <span>Last updated: {githubData.lastUpdated}</span>
+              </div>
+              {githubData.recentCommits && githubData.recentCommits.length > 0 && (
+                <div className="recent-commits">
+                  <h4>Recent Commits</h4>
+                  <ul>
+                    {githubData.recentCommits.map((commit, index) => (
+                      <li key={index}>
+                        <div className="commit-message">{commit.message}</div>
+                        <div className="commit-date">{commit.date}</div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="modal-links">
-            <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="github-link">
-              {/* <FaGithub /> */}View Code
-            </a>
+            {repoUrl && (
+              <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="github-link">
+                {/* <FaGithub /> */}View Code 
+              </a>
+            )}
             {demoUrl && (
               <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="demo-link">
-                Live Demo
+                {/* <FaExternalLinkAlt />*/}Live Demo
               </a>
             )}
           </div>
-
-          {additionalImages && Array.isArray(additionalImages) && (
-            <div className="modal-gallery">
-              {additionalImages.map((img, index) => (
-                <img key={index} src={img} alt={`${title} screenshot ${index + 1}`} />
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>

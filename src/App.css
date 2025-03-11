@@ -42,15 +42,16 @@ main {
   border-radius: 16px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.15s ease-out;
 }
 
 .project-card:hover {
-  transform: translate(10px, -10px);
-  /* transform: translateX(10px); */
+  transform: translate(5px, -5px);
+  box-shadow: -5px 5px 0px rgba(110, 142, 251, 1), /* No blur (0px) */
+             -10px 10px 0px rgba(167, 119, 227, 1);
 }
+
 
 .project-image-container {
   position: relative;
@@ -295,22 +296,7 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Card styles for Projects and Experience sections */
-.card {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-}
 
 .card-title {
   font-size: 1.2rem;

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Projects from './components/Projects';
 import ProfessionalExperience from './components/ProfessionalExperience';
 import './App.css';
+import ProjectCard from './components/ProjectCard';
+import ProjectModal from './components/ProjectModal.js';
 
 function App() {
   const [activeSection, setActiveSection] = useState('Projects');
@@ -9,6 +11,19 @@ function App() {
   const nameRef = useRef(null);
   const scrollTimeout = useRef(null);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const projects = [
+    // Your projects array
+  ];
+
+  const openProjectModal = (project) => {
+    setSelectedProject(project);
+  };
+
+  const closeProjectModal = () => {
+    setSelectedProject(null);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,7 +87,23 @@ function App() {
         </div>
         {activeSection === 'Projects' && <Projects />}
         {activeSection === 'ProfessionalExperience' && <ProfessionalExperience />}
+        <div className="projects-grid">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              project={project}
+              onClick={openProjectModal}
+            />
+          ))}
+        </div>
       </main>
+      
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={closeProjectModal}
+        />
+      )}
     </div>
   );
 }

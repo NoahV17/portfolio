@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getRepositoryInfo, getRecentCommits } from '../services/githubService';
+import ProjectModal from './ProjectModal';
 import './Projects.css';
 
 // Skill category mapping
@@ -63,7 +64,7 @@ const Projects = () => {
       description: 'My personal portfolio website built with React.',
       repoName: 'react_portfolio',
       skills: ['React', 'JavaScript', 'CSS'],
-      image: '/images/portfolio.jpg',
+      image: '../public/img/pocket-pomo.jpg',
       liveLink: 'https://noahvario.com',
       githubData: null,
       loading: true
@@ -100,6 +101,9 @@ const Projects = () => {
     },
     // Add more projects to fill the 4x3 grid
   ]);
+  
+  // Add state for selected project
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const fetchGitHubData = async () => {
@@ -140,12 +144,26 @@ const Projects = () => {
     fetchGitHubData();
   }, []);
 
+  // Function to handle project card clicks
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+  };
+
+  // Function to close modal
+  const closeModal = () => {
+    setSelectedProject(null);
+  };
+
   return (
     <section className="projects-section">
       <h3>My Projects</h3>
       <div className="projects-grid">
         {projects.map((project) => (
-          <div key={project.id} className="card project-card">
+          <div 
+            key={project.id} 
+            className="card project-card"
+            onClick={() => handleProjectClick(project)}
+          >
             {project.image && (
               <div className="project-image-container">
                 <img src={project.image} alt={project.title} className="project-image" />
@@ -209,6 +227,20 @@ const Projects = () => {
           </div>
         ))}
       </div>
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <ProjectModal
+          title={selectedProject.title}
+          description={selectedProject.githubData?.description || selectedProject.description}
+          imageUrl={selectedProject.image}
+          repoUrl={selectedProject.repoName ? `https://github.com/NoahV17/${selectedProject.repoName}` : null}
+          demoUrl={selectedProject.liveLink}
+          technologies={selectedProject.skills}
+          githubData={selectedProject.githubData}
+          onClose={closeModal}
+        />
+      )}
     </section>
   );
 };
