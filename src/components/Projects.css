@@ -1,0 +1,166 @@
+.projects-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.projects-section h3 {
+  margin: 0rem;
+  font-size: 2rem;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Projects grid with fixed-size cards and flexible spacing */
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+/* Card wrapper to maintain fixed dimensions */
+.projects-grid .card {
+  width: 300px;
+  height: 450px; /* Fixed height for all cards */
+  margin: 0;
+  flex: 0 0 auto; /* Don't grow or shrink */
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust minmax value */
+  grid-template-rows: repeat(auto-fill, minmax(350px, auto)); /* Adjust minmax value */
+  gap: 25px; /* Adjust gap value */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+@media (max-width: 1200px) {
+  .projects-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .projects-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-image {
+  width: 100%;
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Maintain aspect ratio and ensure full container coverage */
+  transition: transform 0.5s ease;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.skill-tag {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Different color schemes for different skills */
+.skill-tag.frontend {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.skill-tag.backend {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.skill-tag.language {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.skill-tag.tool {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.skill-tag.main-language {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  font-weight: bold;
+}
+
+.project-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.github-link, .live-link {
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.github-link {
+  background: #24292e;
+  color: white;
+}
+
+.live-link {
+  background: #0366d6;
+  color: white;
+}
+
+.github-link:hover, .live-link:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments for smaller screens - only adjust gap */
+@media (max-width: 1300px) {
+  .projects-grid {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    gap: 15px;
+  }
+  
+  .projects-grid .card {
+    width: 280px; /* Slightly smaller cards on very small screens */
+  }
+}

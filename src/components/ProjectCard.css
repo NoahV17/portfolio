@@ -1,0 +1,197 @@
+.project-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+  width: 100%;
+  height: 100%;
+}
+
+.project-card:hover {
+  transform: translate(5px, -5px);
+  box-shadow: -5px 5px 0px rgba(110, 142, 251, 1),
+             -10px 10px 0px rgba(167, 119, 227, 1);
+}
+
+.project-image-container {
+  position: relative;
+  overflow: visible;
+  /* height: 200px; */
+  min-height: 200px;
+  margin-bottom: 25px;
+  z-index: 2;
+}
+
+.project-image {
+  width: 90%;
+  height: 100%;
+  border-radius: 15px;
+  border: #ffffff 5px solid;
+  object-fit: cover;
+  padding: 0px;
+  margin: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.45); /* Added shadow to make image pop */
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-card:hover .project-overlay {
+  opacity: .5;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #333;
+  text-align: left;
+}
+
+.card-content {
+  color: #555;
+  line-height: 1.5;
+  padding: 15px;
+  padding-top: 0; /* Remove top padding to avoid pushing content down */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow: hidden; /* Prevent overflow */
+  background-color: #fff; /* White background for text content only */
+  border-radius: 0 0 16px 16px; /* Round only bottom corners */
+  margin-top: -5px; /* Pull content up slightly */
+  z-index: 1; /* Ensure content is below the image */
+}
+
+.project-content {
+  padding: 0.8rem; /* Slightly increased padding */
+  text-align: left; /* Ensure left alignment */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.project-description {
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  /* Limit text to 2 lines with ellipsis */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.project-technologies {
+  margin-top: auto; /* Push to the bottom of flex container */
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap-reverse; /* Reverse wrap makes tags stack upwards */
+  gap: 0.35rem;
+  justify-content: flex-start; /* Align tags to the left */
+  flex-direction: row-reverse; /* Start from bottom and go upwards */
+}
+
+.tech-tag {
+  background-color: #f0f0f0;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  font-weight: 500;
+}
+
+.tech-tag.frontend {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.tech-tag.backend {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.tech-tag.language {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.tech-tag.tool {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.project-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.project-links a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1.1rem;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #454545;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.project-links a.github-link {
+  background-color: #171717;
+  color: #ffffff;
+}
+
+.project-links a.demo-link {
+  background-color: #e9f0ff;
+  color: #1565c0;
+}
+
+.project-links a.github-link:hover {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  box-shadow: inset 0 0 0 2px #171717;
+}
+
+.project-links a.demo-link:hover {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+}
+
+/* Hide text beside icons */
+.link-text {
+  display: none;
+}
