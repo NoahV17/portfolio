@@ -11,51 +11,14 @@ main {
   padding: 0 20px;
 }
 
+/* Remove these responsive grid layout rules since they're now in Projects.css */
 .projects-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
   padding: 1rem;
   margin: 0 auto;
-}
-
-@media (min-width: 576px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 768px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .projects-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.project-card {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #fff;
-  cursor: pointer;
-  transition: all 0.15s ease-out;
-}
-
-.project-card:hover {
-  transform: translate(5px, -5px);
-  box-shadow: -5px 5px 0px rgba(110, 142, 251, 1), /* No blur (0px) */
-             -10px 10px 0px rgba(167, 119, 227, 1);
-}
-
-
-.project-image-container {
-  position: relative;
-  overflow: hidden;
 }
 
 .project-image {
@@ -63,79 +26,6 @@ main {
   height: 250px;
   object-fit: cover;
   transition: transform 0.5s ease;
-}
-
-.project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.8);
-  color: white;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.project-card:hover .project-overlay {
-  opacity: .5;
-}
-
-.project-card:hover .project-image {
-  transform: scale(.95);
-}
-
-.project-links {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.github-link, .demo-link {
-  padding: 8px 16px;
-  border-radius: 20px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: transform 0.2s ease;
-}
-
-.github-link {
-  background: #24292e;
-  color: white;
-}
-
-.demo-link {
-  background: #0066cc;
-  color: white;
-}
-
-.github-link:hover, .demo-link:hover {
-  transform: translateY(-2px);
-}
-
-.tech-tag {
-  background: #e1e1e1;
-  padding: 0.2rem 0.5rem;
-  border-radius: 15px;
-  margin: 0.2rem;
-  display: inline-block;
-  font-size: 0.8rem;
-}
-
-.project-link {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: #282c34;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
 }
 
 /* Modal Styles */
@@ -283,49 +173,6 @@ body {
   transform: translateY(-2px);
 }
 
-.floating-name {
-  position: relative;
-  will-change: transform;
-  margin: 0;
-  padding: 10px;
-  font-size: 2.5rem;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-
-.card-title {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.card-content {
-  color: #555;
-  line-height: 1.5;
-  padding: 15px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.github-stats {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.github-stats > div {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
 
 @media (max-width: 768px) {
   .App-header {

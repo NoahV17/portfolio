@@ -78,15 +78,15 @@ function App() {
           >
             Projects
           </button>
-          <button
+          {/* <button
             className={activeSection === 'ProfessionalExperience' ? 'active' : ''}
             onClick={() => setActiveSection('ProfessionalExperience')}
           >
             Professional Experience
-          </button>
+          </button> */}
         </div>
         {activeSection === 'Projects' && <Projects />}
-        {activeSection === 'ProfessionalExperience' && <ProfessionalExperience />}
+        {/* {activeSection === 'ProfessionalExperience' && <ProfessionalExperience />} */}
         <div className="projects-grid">
           {projects.map((project, index) => (
             <ProjectCard
@@ -100,7 +100,13 @@ function App() {
       
       {selectedProject && (
         <ProjectModal
-          project={selectedProject}
+          title={selectedProject.title}
+          description={selectedProject.description}
+          imageUrl={selectedProject.imageUrl || selectedProject.image}
+          repoUrl={selectedProject.repoUrl || (selectedProject.repoName ? `https://github.com/NoahV17/${selectedProject.repoName}` : null)}
+          demoUrl={selectedProject.demoUrl || selectedProject.liveLink}
+          technologies={selectedProject.technologies || selectedProject.skills}
+          githubData={selectedProject.githubData}
           onClose={closeProjectModal}
         />
       )}

@@ -1,10 +1,13 @@
 .project-card {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   border-radius: 16px;
   overflow: hidden;
-  background: #fff;
+  background: white;
   cursor: pointer;
   transition: all 0.15s ease-out;
+  width: 100%;
+  height: 100%;
 }
 
 .project-card:hover {
@@ -15,14 +18,22 @@
 
 .project-image-container {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  /* height: 200px; */
+  min-height: 200px;
+  margin-bottom: 25px;
+  z-index: 2;
 }
 
 .project-image {
-  width: 100%;
-  height: 250px;
+  width: 90%;
+  height: 100%;
+  border-radius: 15px;
+  border: #ffffff 5px solid;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  padding: 0px;
+  margin: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.45); /* Added shadow to make image pop */
 }
 
 .project-overlay {
@@ -45,10 +56,6 @@
   opacity: .5;
 }
 
-.project-card:hover .project-image {
-  transform: scale(.95);
-}
-
 .card-title {
   font-size: 1.2rem;
   margin-bottom: 8px;
@@ -60,10 +67,16 @@
   color: #555;
   line-height: 1.5;
   padding: 15px;
+  padding-top: 0; /* Remove top padding to avoid pushing content down */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   text-align: left;
+  overflow: hidden; /* Prevent overflow */
+  background-color: #fff; /* White background for text content only */
+  border-radius: 0 0 16px 16px; /* Round only bottom corners */
+  margin-top: -5px; /* Pull content up slightly */
+  z-index: 1; /* Ensure content is below the image */
 }
 
 .project-content {
@@ -139,7 +152,7 @@
 .project-links {
   display: flex;
   justify-content: flex-end;
-  gap: 0.7rem;
+  gap: 0.5rem;
   margin-top: 0.5rem;
 }
 
@@ -147,20 +160,19 @@
   text-decoration: none;
   color: #007bff;
   font-size: 1.1rem;
-  width: 32px;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: #f8f9fa;
+  background-color: #454545;
   transition: all 0.2s ease;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .project-links a.github-link {
-  background-color: #f3f3f7;
-  color: #333;
+  background-color: #171717;
+  color: #ffffff;
 }
 
 .project-links a.demo-link {
@@ -168,14 +180,10 @@
   color: #1565c0;
 }
 
-.project-links a:hover {
-  transform: translateY(-4px) scale(1.1);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
 .project-links a.github-link:hover {
-  background-color: #24292e;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  box-shadow: inset 0 0 0 2px #171717;
 }
 
 .project-links a.demo-link:hover {
@@ -186,25 +194,4 @@
 /* Hide text beside icons */
 .link-text {
   display: none;
-}
-
-/* Responsive Grid Layout */
-@media (min-width: 576px) {
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .projects-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }

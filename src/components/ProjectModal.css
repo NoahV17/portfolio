@@ -4,13 +4,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   padding: 20px;
   animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 
 @keyframes fadeIn {
@@ -51,7 +52,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
   z-index: 10;
   transition: all 0.2s ease;
 }
@@ -79,7 +81,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 100%);
+}
+
+.modal-banner-content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .modal-banner h2 {
@@ -88,6 +98,29 @@
   margin: 0;
   text-shadow: 0 2px 4px rgba(0,0,0,0.7);
   font-weight: 600;
+}
+
+.modal-banner-links {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-banner-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.modal-banner-links a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
 }
 
 .modal-body {
@@ -108,16 +141,16 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 25px;
-  flex-direction: column-reverse;
-  align-items: flex-start;
 }
 
 .modal-technologies .tech-tag {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  background-color: #f0f0f0;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   font-weight: 500;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Tech tag colors based on category */

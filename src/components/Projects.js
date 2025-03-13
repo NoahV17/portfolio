@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { getRepositoryInfo, getRecentCommits } from '../services/githubService';
+import React, { useState } from 'react';
 import ProjectModal from './ProjectModal';
 import './Projects.css';
 
@@ -57,92 +56,92 @@ const getSkillClass = (skill) => {
 };
 
 const Projects = () => {
-  const [projects, setProjects] = useState([
+  const [projects] = useState([
     {
       id: 1,
-      title: 'Portfolio Website',
-      description: 'My personal portfolio website built with React.',
-      repoName: 'react_portfolio',
-      skills: ['React', 'JavaScript', 'CSS'],
-      image: '../public/img/pocket-pomo.jpg',
-      liveLink: 'https://noahvario.com',
-      githubData: null,
-      loading: true
+      title: 'AI Travel Planner',
+      description: 'Engineered seamless cross-device functionality through real-time data syncing through Firebase Firestore, allowing automatic data fetching and eliminating the need for page refreshing.',
+      repoName: 'jetset',
+      skills: ['Node', 'React', 'Firestore', 'Gemini Turbo API'],
+      image: '/react-portfolio/img/travel.png',
+      liveLink: null,
     },
     {
       id: 2,
-      title: 'Data Visualization Tool',
-      description: 'A tool for visualizing complex datasets with interactive charts.',
-      repoName: 'data_viz_tool',
-      skills: ['Python', 'React', 'D3.js', 'Flask'],
-      image: '/images/data-viz.jpg',
-      githubData: null,
-      loading: true
+      title: 'Website Builder',
+      description: 'Reduced site creation time by 90% through an automated GitHub Actions workflow that dynamically generated web pages by parsing repository file directories.',
+      repoName: null,
+      skills: ['GitHub Actions', 'Yaml', 'Git Automation', 'Modular Components'],
+      image: '/react-portfolio/img/web-build.png',
+      liveLink: null,
     },
     {
       id: 3,
-      title: 'Machine Learning API',
-      description: 'REST API for machine learning model predictions.',
-      repoName: 'ml_api',
-      skills: ['Python', 'TensorFlow', 'Flask', 'Docker'],
-      image: '/images/ml-api.jpg',
-      githubData: null,
-      loading: true
+      title: 'Arcade Game',
+      description: 'Reduced frame skipping and slowdowns by 95% after introducing entity memory optimization and more efficient runtime code, boosting overall efficiency and improving responsiveness.',
+      repoName: null,
+      skills: ['Python', 'Object Orientation', 'Pygame', 'Encapsulation'],
+      image: '/react-portfolio/img/galactic-defender-intro.png',
+      liveLink: null,
     },
     {
       id: 4,
-      title: 'Mobile Game',
-      description: 'A casual mobile game built with Unity.',
-      repoName: 'mobile_game',
-      skills: ['C#', 'Unity', 'Game Design'],
-      image: '/images/game.jpg',
-      githubData: null,
-      loading: true
+      title: 'Language Learning Service (WIP)',
+      description: 'Integrated optimized algorithms such as ternary search and comb sort with a self-sorting array, ensuring fast data storage and retrieval for efficient application performance.',
+      repoName: null,
+      skills: ['MongoDB', 'Django'],
+      image: '/react-portfolio/img/phrase.png',
+      liveLink: null,
     },
-    // Add more projects to fill the 4x3 grid
+    {
+      id: 5,
+      title: 'Productivity Application',
+      description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
+      repoName: null,
+      skills: ['C++', 'C#', 'Javascript', 'DLLs', 'Bash'],
+      image: '/react-portfolio/img/task-track.png',
+      liveLink: null,
+    }
+    ,{
+      id: 6,
+      title: 'Pomodoro Study Timer',
+      description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
+      repoName: null,
+      skills: ['C++', 'C#', 'Javascript', 'DLLs', 'Bash'],
+      image: '/react-portfolio/img/pocket-pomo.jpg',
+      liveLink: null,
+    },
+    {
+      id: 7,
+      title: 'ML and Data Science w/ Python',
+      description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
+      repoName: null,
+      skills: ['Python', 'Machine Learning', 'AI'],
+      image: '/react-portfolio/img/ml.png',
+      liveLink: null,
+    },
+    // {
+    //   id: 8,
+    //   title: 'Computer Vision Sign Language Translation',
+    //   description: 'Analyzed confusion matrices with findings leading to a 20% increase in model precision.',
+    //   repoName: null,
+    //   skills: ['Python', 'ML'],
+    //   image: '/react-portfolio/img/sign-language.png',
+    //   liveLink: null,
+    // },
+    {
+      id: 9,
+      title: 'Connect 4 Online',
+      description: 'Analyzed confusion matrices with findings leading to a 20% increase in model precision.',
+      repoName: null,
+      skills: ['JavaScript', 'React', 'Node.js'],
+      image: '/react-portfolio/img/conn4.png',
+      liveLink: null,
+    }
   ]);
   
   // Add state for selected project
   const [selectedProject, setSelectedProject] = useState(null);
-
-  useEffect(() => {
-    const fetchGitHubData = async () => {
-      const updatedProjects = await Promise.all(
-        projects.map(async (project) => {
-          if (project.repoName) {
-            try {
-              const repoData = await getRepositoryInfo(project.repoName);
-              const commitsData = await getRecentCommits(project.repoName, 3);
-              
-              return {
-                ...project,
-                githubData: {
-                  stars: repoData?.stargazers_count || 0,
-                  forks: repoData?.forks_count || 0,
-                  lastUpdated: repoData?.updated_at ? new Date(repoData.updated_at).toLocaleDateString() : 'Unknown',
-                  description: repoData?.description || project.description,
-                  language: repoData?.language || '',
-                  recentCommits: commitsData?.map(commit => ({
-                    message: commit.commit.message,
-                    date: new Date(commit.commit.author.date).toLocaleDateString()
-                  })) || []
-                },
-                loading: false
-              };
-            } catch (error) {
-              console.error(`Error fetching data for ${project.repoName}:`, error);
-              return { ...project, loading: false };
-            }
-          }
-          return { ...project, loading: false };
-        })
-      );
-      
-      setProjects(updatedProjects);
-    };
-    
-    fetchGitHubData();
-  }, []);
 
   // Function to handle project card clicks
   const handleProjectClick = (project) => {
@@ -171,7 +170,7 @@ const Projects = () => {
             )}
             <div className="card-content">
               <h3 className="card-title">{project.title}</h3>
-              <p className="project-description">{project.githubData?.description || project.description}</p>
+              <p className="project-description">{project.description}</p>
               
               <div className="skills-container">
                 {project.skills.slice(0, 3).map((skill, index) => (
@@ -183,21 +182,6 @@ const Projects = () => {
                   <span className="skill-tag">+{project.skills.length - 3}</span>
                 )}
               </div>
-              
-              {project.loading ? (
-                <div className="loading-indicator">
-                  <i className="fas fa-spinner fa-spin"></i>
-                </div>
-              ) : project.githubData ? (
-                <div className="github-stats">
-                  <div>
-                    <i className="fas fa-star"></i> {project.githubData.stars}
-                  </div>
-                  <div>
-                    <i className="fas fa-code-branch"></i> {project.githubData.forks}
-                  </div>
-                </div>
-              ) : null}
               
               <div className="project-links" onClick={e => e.stopPropagation()}>
                 {project.repoName && (
@@ -232,12 +216,11 @@ const Projects = () => {
       {selectedProject && (
         <ProjectModal
           title={selectedProject.title}
-          description={selectedProject.githubData?.description || selectedProject.description}
+          description={selectedProject.description}
           imageUrl={selectedProject.image}
           repoUrl={selectedProject.repoName ? `https://github.com/NoahV17/${selectedProject.repoName}` : null}
           demoUrl={selectedProject.liveLink}
           technologies={selectedProject.skills}
-          githubData={selectedProject.githubData}
           onClose={closeModal}
         />
       )}
