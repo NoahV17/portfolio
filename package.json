@@ -19,7 +19,7 @@
   }
   ,
   "proxy": "http://localhost:3001",
-  "homepage": "https://{your-username}.github.io/{your-repo-name}",
+  "homepage": "https://NoahV17.github.io/portfolio",
   "eslintConfig": {
     "extends": [
       "react-app",
