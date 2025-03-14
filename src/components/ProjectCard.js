@@ -41,7 +41,7 @@ const ProjectCard = ({
   return (
     <div className="project-card" onClick={onClick}>
       <div className="project-image-container">
-        <img src={imageUrl || '/react-portfolio/img/placeholder-project.jpg'} alt={title} className="project-image" />
+        <img src={imageUrl || process.env.PUBLIC_URL + '/img/placeholder-project.jpg'} alt={title} className="project-image" />
       </div>
       <div className="project-content">
         <h3 className="project-title">{title}</h3>
