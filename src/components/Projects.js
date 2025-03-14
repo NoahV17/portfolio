@@ -131,8 +131,8 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'Phrase: Lang. Learner',
-      description: 'Integrated optimized algorithms such as ternary search and comb sort with a self-sorting array, ensuring fast data storage and retrieval for efficient application performance.',
+      title: 'AI Lang. Teacher (',
+      description: 'Web app built to learn new languages the fastest and most useful way.',
       repoName: 'phrase',
       skills: ['MongoDB', 'Django'],
       image: process.env.PUBLIC_URL + '/img/phrase.png',
@@ -140,7 +140,7 @@ const Projects = () => {
     },
     {
       id: 5,
-      title: 'Productivity Application',
+      title: 'Productivity Calendar',
       description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
       repoName: 'StudyBuddy-TaskTrack',
       skills: ['C++', 'C#', 'Javascript', 'DLLs', 'Bash'],
@@ -150,7 +150,7 @@ const Projects = () => {
     {
       id: 6,
       title: 'Pomodoro Study Timer',
-      description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
+      description: 'A purpose built application, built from the ground up for eliminating distractions during study sessions.',
       repoName: 'study-buddy',
       skills: ['Swift', 'Xcode', 'Mobile', 'iOS', 'Bash'],
       image: process.env.PUBLIC_URL + '/img/pocket-pomo.jpg',
@@ -159,9 +159,9 @@ const Projects = () => {
     {
       id: 7,
       title: 'ML and Data Science w/ Python',
-      description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
+      description: 'Website for the introduction of ML and DS techniques on a simple dataset.',
       repoName: null,
-      skills: ['Python', 'Machine Learning', 'AI'],
+      skills: ['PapaParse', 'ML.js', 'Plotly.js', 'Javascript', 'Machine Learning', 'AI'],
       image: process.env.PUBLIC_URL + '/img/ml.png',
       liveLink: 'https://noahv17.github.io/ml-data-visualization/',
     },
@@ -177,7 +177,7 @@ const Projects = () => {
     {
       id: 9,
       title: 'Connect 4 Online',
-      description: 'Analyzed confusion matrices with findings leading to a 20% increase in model precision.',
+      description: 'A simple way to play Connect 4 on the web.',
       repoName: 'conn4',
       skills: ['JavaScript', 'React', 'Node.js'],
       image: process.env.PUBLIC_URL + '/img/conn4.png',
