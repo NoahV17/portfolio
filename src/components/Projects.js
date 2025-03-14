@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectModal from './ProjectModal';
 import './Projects.css';
 
@@ -140,8 +140,15 @@ const Projects = () => {
     }
   ]);
   
-  // Add state for selected project
   const [selectedProject, setSelectedProject] = useState(null);
+  const [animated, setAnimated] = useState(false);
+
+  // Trigger animation after component mounts
+  useEffect(() => {
+    setTimeout(() => {
+      setAnimated(true);
+    }, 100);
+  }, []);
 
   // Function to handle project card clicks
   const handleProjectClick = (project) => {
@@ -155,12 +162,13 @@ const Projects = () => {
 
   return (
     <section className="projects-section">
-      <div className="projects-grid">
-        {projects.map((project) => (
+      <div className={`projects-grid ${animated ? 'animated' : ''}`}>
+        {projects.map((project, index) => (
           <div 
             key={project.id} 
             className="card project-card"
             onClick={() => handleProjectClick(project)}
+            style={{"--i": index}} // Animation delay variable
           >
             {project.image && (
               <div className="project-image-container">
@@ -168,18 +176,20 @@ const Projects = () => {
               </div>
             )}
             <div className="card-content">
-              <h3 className="card-title">{project.title}</h3>
-              <p className="project-description">{project.description}</p>
-              
-              <div className="skills-container">
-                {project.skills.slice(0, 3).map((skill, index) => (
-                  <span key={index} className={`skill-tag ${getSkillClass(skill)}`}>
-                    {getSkillIcon(skill)} {skill}
-                  </span>
-                ))}
-                {project.skills.length > 3 && (
-                  <span className="skill-tag">+{project.skills.length - 3}</span>
-                )}
+              <div className="content-wrapper">
+                <h3 className="card-title">{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+                
+                <div className="project-technologies">
+                  {project.skills.slice(0, 3).map((skill, index) => (
+                    <span key={index} className={`tech-tag ${getSkillClass(skill)}`}>
+                      {getSkillIcon(skill)} {skill}
+                    </span>
+                  ))}
+                  {project.skills.length > 3 && (
+                    <span className="tech-tag">+{project.skills.length - 3}</span>
+                  )}
+                </div>
               </div>
               
               <div className="project-links" onClick={e => e.stopPropagation()}>

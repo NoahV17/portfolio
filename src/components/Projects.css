@@ -1,6 +1,12 @@
 .projects-section h2 {
   text-align: center;
   margin-bottom: 1rem;
+  animation: fadeIn 1s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .projects-section h3 {
@@ -10,6 +16,19 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  animation: gradientShift 8s infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Projects grid with fixed-size cards and flexible spacing */
@@ -17,18 +36,29 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 35px;
   padding: 20px;
   margin: 0 auto;
   max-width: 1400px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.projects-grid.animated {
+  opacity: 1;
 }
 
 /* Card wrapper to maintain fixed dimensions */
 .projects-grid .card {
   width: 300px;
-  height: 450px; /* Fixed height for all cards */
+  height: 400px; /* Fixed height for all cards */
   margin: 0;
   flex: 0 0 auto; /* Don't grow or shrink */
+  perspective: 1000px; /* For 3D effects */
+}
+
+.projects-grid .card:hover {
+  z-index: 5;
 }
 
 .projects-container {
@@ -81,6 +111,8 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 /* Different color schemes for different skills */
@@ -153,6 +185,9 @@
   .projects-grid {
     gap: 20px;
   }
+  .projects-grid .card {
+    height: 380px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -162,5 +197,6 @@
   
   .projects-grid .card {
     width: 280px; /* Slightly smaller cards on very small screens */
+    height: 380px;
   }
 }

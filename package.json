@@ -18,8 +18,8 @@
     "build": "react-scripts build"
   }
   ,
-  "proxy": "http://localhost:3000",
-  "homepage": "https://NoahV17.github.io/portfolio",
+  "proxy": "http://localhost:3001",
+  "homepage": "https://noahvar.io",
   "eslintConfig": {
     "extends": [
       "react-app",

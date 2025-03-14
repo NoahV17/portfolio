@@ -5,13 +5,28 @@
   overflow: hidden;
   background: white;
   cursor: pointer;
-  transition: all 0.15s ease-out;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   width: 100%;
   height: 100%;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  animation: fadeInUp 0.6s both;
+  animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .project-card:hover {
-  transform: translate(5px, -5px);
+  transform: translate(8px, -8px); /* Adjusted to shift up and right */
   box-shadow: -5px 5px 0px rgba(110, 142, 251, 1),
              -10px 10px 0px rgba(167, 119, 227, 1);
 }
@@ -19,9 +34,8 @@
 .project-image-container {
   position: relative;
   overflow: visible;
-  /* height: 200px; */
-  min-height: 200px;
-  margin-bottom: 25px;
+  min-height: 180px;
+  margin-bottom: 15px;
   z-index: 2;
 }
 
@@ -34,6 +48,11 @@
   padding: 0px;
   margin: 5px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.45); /* Added shadow to make image pop */
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.03);
 }
 
 .project-overlay {
@@ -57,10 +76,13 @@
 }
 
 .card-title {
-  font-size: 1.2rem;
-  margin-bottom: 8px;
+  font-size: 1rem; /* Smaller title */
+  margin-bottom: 6px;
   color: #333;
   text-align: left;
+  font-weight: 600;
+  line-height: 1.2;
+  height: auto;
 }
 
 .card-content {
@@ -77,6 +99,8 @@
   border-radius: 0 0 16px 16px; /* Round only bottom corners */
   margin-top: -5px; /* Pull content up slightly */
   z-index: 1; /* Ensure content is below the image */
+  position: relative;
+  height: 55%; /* Control the content height */
 }
 
 .project-content {
@@ -97,7 +121,7 @@
 .project-description {
   color: #666;
   margin-bottom: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.75rem; /* Smaller font */
   /* Limit text to 2 lines with ellipsis */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -107,28 +131,42 @@
   text-overflow: ellipsis;
   line-height: 1.4;
   text-align: left;
+  flex-shrink: 0; /* Prevent description from shrinking */
 }
 
+/* Content wrapper to ensure proper spacing */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Revert to previous skill tag styling */
 .project-technologies {
   margin-top: auto; /* Push to the bottom of flex container */
   margin-bottom: 0.5rem;
   display: flex;
-  flex-wrap: wrap-reverse; /* Reverse wrap makes tags stack upwards */
+  flex-wrap: wrap;
   gap: 0.35rem;
-  justify-content: flex-start; /* Align tags to the left */
-  flex-direction: row-reverse; /* Start from bottom and go upwards */
+  justify-content: flex-start;
 }
 
 .tech-tag {
   background-color: #f0f0f0;
-  padding: 0.15rem 0.35rem;
-  border-radius: 4px;
-  font-size: 0.7rem;
+  padding: 5px 10px; /* Revert to previous padding */
+  border-radius: 20px; /* Revert to previous rounded styling */
+  font-size: 0.8rem; /* Revert to previous font size */
   white-space: nowrap;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-height: none; /* Remove height restriction */
+  overflow: visible; /* Allow tags to be fully visible */
 }
 
+/* Different color schemes for different skills */
 .tech-tag.frontend {
   background-color: #e3f2fd;
   color: #1565c0;
@@ -154,20 +192,24 @@
   justify-content: flex-end;
   gap: 0.5rem;
   margin-top: 0.5rem;
+  position: absolute; /* Position links absolutely */
+  bottom: 10px; /* Distance from bottom */
+  right: 10px; /* Distance from right */
+  z-index: 5; /* Ensure links are above other content */
 }
 
 .project-links a {
   text-decoration: none;
   color: #007bff;
-  font-size: 1.1rem;
-  height: 32px;
+  font-size: 1rem;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background-color: #454545;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .project-links a.github-link {
@@ -189,6 +231,11 @@
 .project-links a.demo-link:hover {
   background: linear-gradient(135deg, #6e8efb, #a777e3);
   color: white;
+}
+
+.project-links a:hover {
+  transform: scale(1.2) rotate(8deg);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.25), 0 3px 3px rgba(0,0,0,0.22);
 }
 
 /* Hide text beside icons */
