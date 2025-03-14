@@ -63,7 +63,7 @@ const Projects = () => {
       description: 'Engineered seamless cross-device functionality through real-time data syncing through Firebase Firestore, allowing automatic data fetching and eliminating the need for page refreshing.',
       repoName: 'jetset',
       skills: ['Node', 'React', 'Firestore', 'Gemini Turbo API'],
-      image: '/react-portfolio/img/travel.png',
+      image: '/portfolio/img/travel.png',
       liveLink: null,
     },
     {
@@ -72,7 +72,7 @@ const Projects = () => {
       description: 'Reduced site creation time by 90% through an automated GitHub Actions workflow that dynamically generated web pages by parsing repository file directories.',
       repoName: null,
       skills: ['GitHub Actions', 'Yaml', 'Git Automation', 'Modular Components'],
-      image: '/react-portfolio/img/web-build.png',
+      image: '/portfolio/img/web-build.png',
       liveLink: null,
     },
     {
@@ -81,7 +81,7 @@ const Projects = () => {
       description: 'Reduced frame skipping and slowdowns by 95% after introducing entity memory optimization and more efficient runtime code, boosting overall efficiency and improving responsiveness.',
       repoName: null,
       skills: ['Python', 'Object Orientation', 'Pygame', 'Encapsulation'],
-      image: '/react-portfolio/img/galactic-defender-intro.png',
+      image: '/portfolio/img/galactic-defender-intro.png',
       liveLink: null,
     },
     {
@@ -90,7 +90,7 @@ const Projects = () => {
       description: 'Integrated optimized algorithms such as ternary search and comb sort with a self-sorting array, ensuring fast data storage and retrieval for efficient application performance.',
       repoName: null,
       skills: ['MongoDB', 'Django'],
-      image: '/react-portfolio/img/phrase.png',
+      image: '/portfolio/img/phrase.png',
       liveLink: null,
     },
     {
@@ -99,7 +99,7 @@ const Projects = () => {
       description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
       repoName: null,
       skills: ['C++', 'C#', 'Javascript', 'DLLs', 'Bash'],
-      image: '/react-portfolio/img/task-track.png',
+      image: '/portfolio/img/task-track.png',
       liveLink: null,
     }
     ,{
@@ -108,7 +108,7 @@ const Projects = () => {
       description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
       repoName: null,
       skills: ['C++', 'C#', 'Javascript', 'DLLs', 'Bash'],
-      image: '/react-portfolio/img/pocket-pomo.jpg',
+      image: '/portfolio/img/pocket-pomo.jpg',
       liveLink: null,
     },
     {
@@ -117,7 +117,7 @@ const Projects = () => {
       description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
       repoName: null,
       skills: ['Python', 'Machine Learning', 'AI'],
-      image: '/react-portfolio/img/ml.png',
+      image: '/portfolio/img/ml.png',
       liveLink: null,
     },
     // {
@@ -126,7 +126,7 @@ const Projects = () => {
     //   description: 'Analyzed confusion matrices with findings leading to a 20% increase in model precision.',
     //   repoName: null,
     //   skills: ['Python', 'ML'],
-    //   image: '/react-portfolio/img/sign-language.png',
+    //   image: '/portfolio/img/sign-language.png',
     //   liveLink: null,
     // },
     {
@@ -135,7 +135,7 @@ const Projects = () => {
       description: 'Analyzed confusion matrices with findings leading to a 20% increase in model precision.',
       repoName: null,
       skills: ['JavaScript', 'React', 'Node.js'],
-      image: '/react-portfolio/img/conn4.png',
+      image: '/portfolio/img/conn4.png',
       liveLink: null,
     }
   ]);
@@ -155,7 +155,6 @@ const Projects = () => {
 
   return (
     <section className="projects-section">
-      <h3>My Projects</h3>
       <div className="projects-grid">
         {projects.map((project) => (
           <div 

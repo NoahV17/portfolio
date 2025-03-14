@@ -107,7 +107,7 @@ body {
 }
 
 .App-header {
-  padding: 20px;
+  /* padding: 20px; */
   position: relative;
   z-index: 10;
   display: flex;
@@ -177,7 +177,7 @@ body {
 @media (max-width: 768px) {
   .App-header {
     flex-direction: column;
-    gap: 15px;
+    /* gap: 15px; */
   }
   
   .floating-name {
