@@ -143,8 +143,6 @@
 
 /* Revert to previous skill tag styling */
 .project-technologies {
-  margin-top: auto; /* Push to the bottom of flex container */
-  margin-bottom: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
@@ -189,13 +187,12 @@
 
 .project-links {
   display: flex;
-  justify-content: flex-end;
   gap: 0.5rem;
-  margin-top: 0.5rem;
+  align-items: center;
   position: absolute; /* Position links absolutely */
   bottom: 10px; /* Distance from bottom */
   right: 10px; /* Distance from right */
-  z-index: 5; /* Ensure links are above other content */
+  z-index: 5;
 }
 
 .project-links a {
@@ -207,19 +204,12 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: #454545;
-  transition: all 0.2s ease;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .project-links a.github-link {
   background-color: #171717;
   color: #ffffff;
-}
-
-.project-links a.demo-link {
-  background-color: #e9f0ff;
-  color: #1565c0;
 }
 
 .project-links a.github-link:hover {
@@ -229,12 +219,23 @@
 }
 
 .project-links a.demo-link:hover {
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  color: white;
+  box-shadow: 0 0 10px rgba(110, 142, 251, 0.8), 0 0 20px rgba(167, 119, 227, 0.6);
 }
 
 .project-links a:hover {
   box-shadow: 0 6px 10px rgba(0,0,0,0.25), 0 3px 3px rgba(0,0,0,0.22);
+}
+
+@keyframes borderGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Hide text beside icons */

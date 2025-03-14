@@ -61,10 +61,55 @@ const Projects = () => {
       id: 1,
       title: 'AI Travel Planner',
       description: 'Engineered seamless cross-device functionality through real-time data syncing through Firebase Firestore, allowing automatic data fetching and eliminating the need for page refreshing.',
-      repoName: 'jetset',
+      repoName: null,
       skills: ['Node', 'React', 'Firestore', 'Gemini Turbo API', 'Agile'],
       image: process.env.PUBLIC_URL + '/img/travel.png',
       liveLink: 'https://jet-set-git-main-noahv17s-projects.vercel.app',
+      // Enhanced content
+      storyContent: "This project started as a solution to my own travel planning frustrations. I wanted a tool that could leverage AI to create personalized travel itineraries while maintaining a clean, user-friendly interface. The application uses Google's Gemini Turbo API to generate custom travel plans based on user preferences, location, and trip duration.",
+      challenges: [
+        "Implementing a responsive UI that works seamlessly across mobile and desktop",
+        "Optimizing API calls to the Gemini Turbo model to reduce costs and latency",
+        "Creating a flexible data structure in Firestore that could accommodate varying travel plans"
+      ],
+      processSteps: [
+        { 
+          title: "Research & Planning", 
+          description: "Conducted user surveys to identify key pain points in travel planning and defined core features." 
+        },
+        { 
+          title: "Prototyping", 
+          description: "Created wireframes and interactive prototypes to validate the user experience." 
+        },
+        { 
+          title: "Development", 
+          description: "Built the application using React, Firebase, and integrated with Google's Gemini AI." 
+        },
+        { 
+          title: "Testing & Refinement", 
+          description: "Conducted user testing, gathered feedback, and iteratively improved the application." 
+        }
+      ],
+      outcomes: [
+        "Successfully integrated Firebase Firestore with real-time synchronization",
+        "Created an intuitive UI that received positive user feedback",
+        "Developed API wrapper to efficiently interact with Gemini Turbo model",
+        "Implemented user authentication and profile management"
+      ],
+      galleryImages: [
+        { 
+          src: process.env.PUBLIC_URL + '/img/travel-detail1.png', 
+          caption: "Landing page with AI-powered trip suggestion" 
+        },
+        { 
+          src: process.env.PUBLIC_URL + '/img/travel-detail2.png', 
+          caption: "Interactive itinerary builder" 
+        },
+        { 
+          src: process.env.PUBLIC_URL + '/img/travel-detail3.png', 
+          caption: "Mobile responsive design" 
+        }
+      ]
     },
     {
       id: 2,
@@ -86,7 +131,7 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'Language Learning Service (WIP)',
+      title: 'Phrase: Lang. Learner',
       description: 'Integrated optimized algorithms such as ternary search and comb sort with a self-sorting array, ensuring fast data storage and retrieval for efficient application performance.',
       repoName: 'phrase',
       skills: ['MongoDB', 'Django'],
@@ -180,48 +225,51 @@ const Projects = () => {
                 <h3 className="card-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
                 
-                <div className="project-technologies">
-                  {project.skills.slice(0, 3).map((skill, index) => (
-                    <span key={index} className={`tech-tag ${getSkillClass(skill)}`}>
-                      {getSkillIcon(skill)} {skill}
-                    </span>
-                  ))}
-                  {project.skills.length > 3 && (
-                    <span className="tech-tag">+{project.skills.length - 3}</span>
-                  )}
+                {/* New card footer to contain both technologies and links */}
+                <div className="card-footer" onClick={e => e.stopPropagation()}>
+                  <div className="project-technologies">
+                    {project.skills.slice(0, 2).map((skill, index) => (
+                      <span key={index} className={`tech-tag ${getSkillClass(skill)}`}>
+                        {getSkillIcon(skill)} {skill}
+                      </span>
+                    ))}
+                    {project.skills.length > 2 && (
+                      <span className="tech-tag">+{project.skills.length - 2}</span>
+                    )}
+                  </div>
+                  
+                  <div className="project-links">
+                    {project.repoName && (
+                      <a 
+                        href={`https://github.com/NoahV17/${project.repoName}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="github-link"
+                        title="View Code"
+                      >
+                        <i className="fab fa-github"></i>
+                      </a>
+                    )}
+                    {project.liveLink && (
+                      <a 
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="demo-link live-link" /* Make sure we use demo-link */
+                        title="Live Demo"
+                      >
+                        <i className="fas fa-external-link-alt"></i>
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-              
-              <div className="project-links" onClick={e => e.stopPropagation()}>
-                {project.repoName && (
-                  <a 
-                    href={`https://github.com/NoahV17/${project.repoName}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="github-link"
-                    title="View Code"
-                  >
-                    <i className="fab fa-github"></i>
-                  </a>
-                )}
-                {project.liveLink && (
-                  <a 
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="live-link"
-                    title="Live Demo"
-                  >
-                    <i className="fas fa-external-link-alt"></i>
-                  </a>
-                )}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Project Modal */}
+      {/* Project Modal with enhanced props */}
       {selectedProject && (
         <ProjectModal
           title={selectedProject.title}
@@ -231,6 +279,12 @@ const Projects = () => {
           demoUrl={selectedProject.liveLink}
           technologies={selectedProject.skills}
           onClose={closeModal}
+          // Pass the enhanced content props
+          storyContent={selectedProject.storyContent}
+          processSteps={selectedProject.processSteps}
+          galleryImages={selectedProject.galleryImages}
+          challenges={selectedProject.challenges}
+          outcomes={selectedProject.outcomes}
         />
       )}
     </section>

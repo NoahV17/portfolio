@@ -9,7 +9,13 @@ const ProjectModal = ({
   demoUrl,
   technologies,
   githubData,
-  onClose 
+  onClose,
+  // New props for enhanced content
+  storyContent,
+  processSteps,
+  galleryImages,
+  challenges,
+  outcomes
 }) => {
   // Prevent clicks inside modal from closing it
   const handleModalClick = (e) => {
@@ -152,6 +158,84 @@ const ProjectModal = ({
               </a>
             )}
           </div>
+          
+          {/* New enhanced content sections */}
+          {(storyContent || processSteps || challenges || outcomes || galleryImages) && (
+            <div className="modal-enhanced-content">
+              <h3 className="section-title">Project Details</h3>
+              
+              {storyContent && (
+                <div className="modal-story">
+                  <h4>Background</h4>
+                  <div className="story-content">{storyContent}</div>
+                </div>
+              )}
+              
+              {challenges && (
+                <div className="modal-challenges">
+                  <h4>Challenges</h4>
+                  {typeof challenges === 'string' ? (
+                    <p>{challenges}</p>
+                  ) : (
+                    <ul className="challenges-list">
+                      {challenges.map((challenge, idx) => (
+                        <li key={idx}>{challenge}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+              
+              {processSteps && processSteps.length > 0 && (
+                <div className="modal-process">
+                  <h4>Development Process</h4>
+                  <div className="process-timeline">
+                    {processSteps.map((step, idx) => (
+                      <div className="process-step" key={idx}>
+                        <div className="step-number">{idx + 1}</div>
+                        <div className="step-content">
+                          <h5>{step.title}</h5>
+                          <p>{step.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {outcomes && (
+                <div className="modal-outcomes">
+                  <h4>Outcomes & Learnings</h4>
+                  {typeof outcomes === 'string' ? (
+                    <p>{outcomes}</p>
+                  ) : (
+                    <ul className="outcomes-list">
+                      {outcomes.map((outcome, idx) => (
+                        <li key={idx}>{outcome}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
+              
+              {galleryImages && galleryImages.length > 0 && (
+                <div className="modal-gallery">
+                  <h4>Project Gallery</h4>
+                  <div className="gallery-grid">
+                    {galleryImages.map((img, idx) => (
+                      <div className="gallery-item" key={idx}>
+                        <img 
+                          src={img.src} 
+                          alt={img.caption || `${title} gallery image ${idx + 1}`} 
+                        />
+                        {img.caption && <p className="image-caption">{img.caption}</p>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
