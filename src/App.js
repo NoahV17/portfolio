@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Header from './components/Header';
 import Projects from './components/Projects';
 import ProfessionalExperience from './components/ProfessionalExperience';
 import './App.css';
@@ -59,17 +60,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h2 ref={nameRef} className="floating-name">Noah Vario</h2>
-        <div className="social-links">
-          <a href="https://github.com/NoahV17" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-github"></i> Github
-          </a>
-          <a href="https://www.linkedin.com/in/noahvario" target="_blank" rel="noopener noreferrer">
-            <i className="fab fa-linkedin"></i> LinkedIn
-          </a>
-        </div>
-      </header>
+      <Header />
       <main>
         <div className="tabber">
           <button

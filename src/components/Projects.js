@@ -60,9 +60,9 @@ const Projects = () => {
     {
       id: 1,
       title: 'AI Travel Planner',
-      description: 'Engineered seamless cross-device functionality through real-time data syncing through Firebase Firestore, allowing automatic data fetching and eliminating the need for page refreshing.',
+      description: 'An all in one travel planning app that utilizes Google\'s Gen AI to give you a custom trip plan based on your destination and preferences in under a minute. With cross-device data syncing through Firebase Firestore, users can seamlessly swap between the desktop and mobile sites when logged in.',
       repoName: null,
-      skills: ['Node', 'React', 'Firestore', 'Gemini Turbo API', 'Agile'],
+      skills: ['React', 'Firestore', 'Gemini Turbo API', 'Agile', 'Node'],
       image: process.env.PUBLIC_URL + '/img/travel.png',
       liveLink: 'https://jet-set-git-main-noahv17s-projects.vercel.app',
       // Enhanced content
@@ -96,32 +96,23 @@ const Projects = () => {
         "Developed API wrapper to efficiently interact with Gemini Turbo model",
         "Implemented user authentication and profile management"
       ],
-      galleryImages: [
-        { 
-          src: process.env.PUBLIC_URL + '/img/travel-detail1.png', 
-          caption: "Landing page with AI-powered trip suggestion" 
-        },
-        { 
-          src: process.env.PUBLIC_URL + '/img/travel-detail2.png', 
-          caption: "Interactive itinerary builder" 
-        },
-        { 
-          src: process.env.PUBLIC_URL + '/img/travel-detail3.png', 
-          caption: "Mobile responsive design" 
-        }
-      ]
+      // galleryImages: [
+      //   { 
+      //     src: process.env.PUBLIC_URL + '/img/travel-detail1.png', 
+      //     caption: "Landing page with AI-powered trip suggestion" 
+      //   },
+      //   { 
+      //     src: process.env.PUBLIC_URL + '/img/travel-detail2.png', 
+      //     caption: "Interactive itinerary builder" 
+      //   },
+      //   { 
+      //     src: process.env.PUBLIC_URL + '/img/travel-detail3.png', 
+      //     caption: "Mobile responsive design" 
+      //   }
+      // ]
     },
     {
       id: 2,
-      title: 'Website Builder',
-      description: 'Reduced site creation time by 90% through an automated GitHub Actions workflow that dynamically generated web pages by parsing repository file directories.',
-      repoName: 'portfolio_website',
-      skills: ['GitHub Actions', 'Yaml', 'Git Automation', 'Modular Components'],
-      image: process.env.PUBLIC_URL + '/img/web-build.png',
-      liveLink: 'https://noahv17.github.io/portfolio_website/portfolio.html',
-    },
-    {
-      id: 3,
       title: 'Arcade Game',
       description: 'Reduced frame skipping and slowdowns by 95% after introducing entity memory optimization and more efficient runtime code, boosting overall efficiency and improving responsiveness.',
       repoName: 'Galactic-Defender',
@@ -130,8 +121,8 @@ const Projects = () => {
       liveLink: null,
     },
     {
-      id: 4,
-      title: 'AI Lang. Teacher (',
+      id: 3,
+      title: 'AI Lang. Teacher (wip)',
       description: 'Web app built to learn new languages the fastest and most useful way.',
       repoName: 'phrase',
       skills: ['MongoDB', 'Django'],
@@ -139,7 +130,7 @@ const Projects = () => {
       liveLink: null,
     },
     {
-      id: 5,
+      id: 4,
       title: 'Productivity Calendar',
       description: 'Increased user retention by 150% by building a more intuitive front end with seamless features that allow users to better make use of our services.',
       repoName: 'StudyBuddy-TaskTrack',
@@ -148,7 +139,7 @@ const Projects = () => {
       liveLink: null,
     },
     {
-      id: 6,
+      id: 5,
       title: 'Pomodoro Study Timer',
       description: 'A purpose built application, built from the ground up for eliminating distractions during study sessions.',
       repoName: 'study-buddy',
@@ -157,13 +148,22 @@ const Projects = () => {
       liveLink: null,
     },
     {
-      id: 7,
-      title: 'ML and Data Science w/ Python',
+      id: 6,
+      title: 'ML & Data Science w/ JS',
       description: 'Website for the introduction of ML and DS techniques on a simple dataset.',
       repoName: null,
       skills: ['PapaParse', 'ML.js', 'Plotly.js', 'Javascript', 'Machine Learning', 'AI'],
       image: process.env.PUBLIC_URL + '/img/ml.png',
       liveLink: 'https://noahv17.github.io/ml-data-visualization/',
+    },
+    {
+      id: 7,
+      title: 'Website Builder',
+      description: 'Reduced site creation time by 90% through an automated GitHub Actions workflow that dynamically generated web pages by parsing repository file directories.',
+      repoName: 'portfolio_website',
+      skills: ['GitHub Actions', 'Yaml', 'Git Automation', 'Modular Components'],
+      image: process.env.PUBLIC_URL + '/img/web-build.png',
+      liveLink: 'https://noahv17.github.io/portfolio_website/portfolio.html',
     },
     // {
     //   id: 8,
@@ -176,7 +176,7 @@ const Projects = () => {
     // },
     {
       id: 9,
-      title: 'Connect 4 Online',
+      title: 'Connect 4 Web',
       description: 'A simple way to play Connect 4 on the web.',
       repoName: 'conn4',
       skills: ['JavaScript', 'React', 'Node.js'],

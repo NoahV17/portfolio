@@ -2,7 +2,7 @@
   text-align: center;
   padding: 20px;
   min-height: 100vh;
-  background-color: #121212;
+  background-color: #181818; /* Lighter black background */
   animation: fadeIn 0.8s ease-in-out;
 }
 
