@@ -19,7 +19,7 @@ const Header = () => {
         </div>
       </div>
       <div className="header-profile-pic">
-        
+        <img src="/img/pfp1.png" alt="Noah Vario" />
       </div>
     </header>
   );
