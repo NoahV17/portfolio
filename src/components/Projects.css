@@ -138,8 +138,8 @@
   font-weight: bold;
 }
 
-/* Remove conflicting link styles */
 .github-link, .live-link {
+  height: 25px;
   padding: 8px 16px;
   border-radius: 20px;
   text-decoration: none;
@@ -156,8 +156,6 @@
   background: #24292e;
   color: white;
 }
-
-/* Remove any .live-link styles that might conflict */
 
 /* Responsive adjustments for smaller screens - only adjust gap */
 @media (max-width: 1300px) {

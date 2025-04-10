@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './ProjectModal.css';
 
 const ProjectModal = ({ 
@@ -15,11 +15,34 @@ const ProjectModal = ({
   processSteps,
   galleryImages,
   challenges,
-  outcomes
+  outcomes,
+  // New prop for animation
+  sourceRect
 }) => {
+  const [animationComplete, setAnimationComplete] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const modalRef = useRef(null);
+  
   // Prevent clicks inside modal from closing it
   const handleModalClick = (e) => {
     e.stopPropagation();
+  };
+  
+  // Set animation finished after initial animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationComplete(true);
+    }, 400); // Match this to your CSS animation duration
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle modal closing with animation
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 300);
   };
 
   // Helper function to get class for technology tags
@@ -75,35 +98,34 @@ const ProjectModal = ({
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={handleModalClick}>
-        <button className="modal-close" onClick={onClose}>
-          &#x2715;
-        </button>
-        
-        <div className="modal-banner" style={{ backgroundImage: `url(${imageUrl})` }}>
-          <div className="modal-banner-content">
-            <h2>{title}</h2>
-            
-            <div className="modal-banner-links">
-              {repoUrl && (
-                <a href={repoUrl} target="_blank" rel="noopener noreferrer" title="GitHub Repository">
-                  <i className="fab fa-github"></i>
-                </a>
-              )}
-              <a href="https://www.linkedin.com/in/noahvario" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-              {demoUrl && (
-                <a href={demoUrl} target="_blank" rel="noopener noreferrer" title="Live Demo">
-                  <i className="fas fa-external-link-alt"></i>
-                </a>
-              )}
-            </div>
-          </div>
+    <div 
+      className={`modal-overlay ${animationComplete ? 'visible' : ''} ${isClosing ? 'closing' : ''}`} 
+      onClick={handleClose}
+    >
+      <div 
+        className={`modal-content ${animationComplete ? 'visible' : ''} ${isClosing ? 'closing' : ''}`}
+        onClick={handleModalClick}
+        ref={modalRef}
+      >
+        {/* Image banner with zoom animation */}
+        <div 
+          className="modal-image-banner" 
+          style={{ backgroundImage: `url(${imageUrl})` }}
+          data-source-rect={sourceRect ? JSON.stringify({
+            top: sourceRect.top,
+            left: sourceRect.left,
+            width: sourceRect.width,
+            height: sourceRect.height
+          }) : ''}
+        >
+          <button className="modal-close" onClick={handleClose}>
+            &#x2715;
+          </button>
         </div>
-
-        <div className="modal-body">
+        
+        <div className="modal-info">
+          <h2>{title}</h2>
+          
           <div className="modal-description">
             <p>{description}</p>
             
@@ -116,6 +138,19 @@ const ProjectModal = ({
             </div>
           </div>
 
+          <div className="modal-links">
+            {repoUrl && (
+              <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="github-link">
+                <i className="fab fa-github"></i> View Code 
+              </a>
+            )}
+            {demoUrl && (
+              <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="demo-link">
+                <i className="fas fa-external-link-alt"></i> Live Demo
+              </a>
+            )}
+          </div>
+          
           {githubData && (
             <div className="modal-github-stats">
               <div className="stat-item">
@@ -145,21 +180,8 @@ const ProjectModal = ({
               )}
             </div>
           )}
-
-          <div className="modal-links">
-            {repoUrl && (
-              <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="github-link">
-                <i className="fab fa-github"></i> View Code 
-              </a>
-            )}
-            {demoUrl && (
-              <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="demo-link">
-                <i className="fas fa-external-link-alt"></i> Live Demo
-              </a>
-            )}
-          </div>
           
-          {/* New enhanced content sections */}
+          {/* Enhanced content sections */}
           {(storyContent || processSteps || challenges || outcomes || galleryImages) && (
             <div className="modal-enhanced-content">
               <h3 className="section-title">Project Details</h3>

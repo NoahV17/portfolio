@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ProjectModal from './ProjectModal';
 import './Projects.css';
 
@@ -187,6 +187,8 @@ const Projects = () => {
   
   const [selectedProject, setSelectedProject] = useState(null);
   const [animated, setAnimated] = useState(false);
+  const [clickPosition, setClickPosition] = useState(null);
+  const projectRefs = useRef({});
 
   // Trigger animation after component mounts
   useEffect(() => {
@@ -196,13 +198,19 @@ const Projects = () => {
   }, []);
 
   // Function to handle project card clicks
-  const handleProjectClick = (project) => {
+  const handleProjectClick = (project, event) => {
+    const clickedElement = projectRefs.current[project.id];
+    if (clickedElement) {
+      const rect = clickedElement.getBoundingClientRect();
+      setClickPosition(rect);
+    }
     setSelectedProject(project);
   };
 
   // Function to close modal
   const closeModal = () => {
     setSelectedProject(null);
+    setClickPosition(null);
   };
 
   return (
@@ -212,8 +220,9 @@ const Projects = () => {
           <div 
             key={project.id} 
             className="card project-card"
-            onClick={() => handleProjectClick(project)}
+            onClick={(e) => handleProjectClick(project, e)}
             style={{"--i": index}} // Animation delay variable
+            ref={el => projectRefs.current[project.id] = el}
           >
             {project.image && (
               <div className="project-image-container">
@@ -285,6 +294,8 @@ const Projects = () => {
           galleryImages={selectedProject.galleryImages}
           challenges={selectedProject.challenges}
           outcomes={selectedProject.outcomes}
+          // New prop for animation
+          sourceRect={clickPosition}
         />
       )}
     </section>
